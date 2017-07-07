@@ -1,20 +1,22 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { PaniniService } from '../../services/panini.service';
 
-import { DetailPage } from '../detail/detail';
-
 import { Panino } from '../../interfaces/panino';
 
+import { DetailPage } from '../detail/detail';
+
+@IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-filtered',
+  templateUrl: 'filtered.html',
 })
-export class HomePage {
+export class FilteredPage {
+
   paniniList: Panino[];
   constructor(public navCtrl: NavController, private paniniService: PaniniService) {
-    paniniService.getData().then(articleList => {
+    paniniService.getFiltered().then(articleList => {
       this.paniniList = articleList.json() as Panino[];
       console.log(this.paniniList);
     })
@@ -25,5 +27,4 @@ export class HomePage {
       panino: panino
     })
   }
-
 }

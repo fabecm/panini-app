@@ -1,1 +1,20 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Categorie</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+        <button ion-item (click)="goToHome()">
+            <h2>Home</h2>
+        </button>
+        <button ion-item *ngFor="let category of categories" (click)="goToFiltered(category.id)">
+            <h2>{{ category.name }}</h2>
+            <p>{{ category.description }}</p>
+        </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav id="nav" #content [root]="rootPage"></ion-nav>
